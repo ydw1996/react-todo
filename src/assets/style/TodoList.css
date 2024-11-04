@@ -1,0 +1,16 @@
+.todoList {
+  margin-left: 20px;
+  height: 50vh;
+  color: rgb(76, 76, 76);
+  overflow-y: scroll;
+}
+
+.todoList::-webkit-scrollbar {
+  background-color: rgba(240, 248, 255, 0.719);
+  width: 10px;
+  border-radius: 10px;
+}
+.todoList::-webkit-scrollbar-thumb {
+  background-color: rgba(76, 160, 255, 0.54);
+  border-radius: 10px;
+}

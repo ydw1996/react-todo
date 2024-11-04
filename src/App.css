@@ -1,0 +1,54 @@
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.todoApp {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(57, 57, 57);
+  background: -webkit-linear-gradient(
+    90deg,
+    rgb(211, 234, 255),
+    rgb(144, 199, 255)
+  );
+  background: linear-gradient(90deg, rgb(211, 234, 255), rgb(144, 199, 255));
+}
+
+.todoAdd {
+  position: absolute;
+  right: 30px;
+  bottom: 40px;
+  display: flex;
+  z-index: 100;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  font-size: 5rem;
+  color: rgb(76, 160, 255);
+  animation: bounce_frames 0.5s;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
+  animation-iteration-count: infinite;
+}
+
+.todoAdd:hover {
+  color: rgba(76, 160, 255, 0.773);
+  top: 10;
+  transition: 0.5s ease-in-out;
+}
+
+@keyframes bounce_frames {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 5px, 0);
+  }
+}

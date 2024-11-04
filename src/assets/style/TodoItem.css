@@ -1,0 +1,51 @@
+.todoItem {
+  background: #fff;
+  margin-top: 10px;
+  margin-right: 20px;
+  border-radius: 10px;
+  padding: 1rem 1rem 5rem 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.todoItem:first-child {
+  margin-top: 0;
+}
+
+.todoItem + .todoItem {
+  margin-top: 15px;
+}
+
+.todoItem:hover {
+  background: aliceblue;
+  transition: 0.3s all;
+}
+
+.content {
+  cursor: pointer;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.content svg {
+  font-size: 1.8rem;
+  color: #a1a1a16a;
+}
+
+.content.checked svg {
+  font-size: 1.8rem;
+  color: rgb(76, 160, 255);
+}
+
+.content .text {
+  margin-left: 1rem;
+  flex: 1;
+}
+
+.content.checked .text {
+  color: rgb(126, 126, 126);
+  text-decoration: line-through;
+  cursor: pointer;
+  opacity: 0.6;
+}
