@@ -1,4 +1,4 @@
-.todoBoard {
+.todo-container {
   position: relative;
   display: flex;
   border: 1px solid #fff;
@@ -26,11 +26,8 @@ hr {
   width: 100%;
   opacity: 0.4;
 }
-.sub_title {
-  padding-bottom: 20px;
-}
 
-.todoBoard_container {
+.todo-boar {
   display: flex;
   padding-bottom: 80px;
 }

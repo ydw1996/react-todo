@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { MdAddCircle } from "react-icons/md";
-import { TiPencil, TiTrash } from "react-icons/ti";
-import "../assets/style/TodoPopup.css";
+import { useState, useEffect } from 'react';
+import { MdAddCircle } from 'react-icons/md';
+import { TiPencil, TiTrash } from 'react-icons/ti';
+import '../assets/style/TodoPopup.css';
 
 const TodoPopup = ({
   onClosePopup,
@@ -10,7 +10,7 @@ const TodoPopup = ({
   onRemoveTodo,
   onEditTodo,
 }) => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
@@ -19,14 +19,14 @@ const TodoPopup = ({
   const handleAdd = (e) => {
     e.preventDefault();
     onAddTodo(inputValue);
-    setInputValue("");
+    setInputValue('');
     onClosePopup();
   };
 
   const handleEdit = (e) => {
     e.preventDefault();
     onEditTodo(selectedTodo.id, inputValue);
-    setInputValue("");
+    setInputValue('');
     onClosePopup();
   };
 
@@ -34,23 +34,30 @@ const TodoPopup = ({
     if (selectedTodo) {
       setInputValue(selectedTodo.text);
     } else {
-      setInputValue("");
+      setInputValue('');
     }
   }, [selectedTodo]);
 
   return (
     <div>
-      <div className="todoPopup_bg" onClick={onClosePopup}></div>
-      <form onSubmit={selectedTodo ? handleEdit : handleAdd}>
+      <div
+        className="todo-popup-bg"
+        onClick={onClosePopup}
+      ></div>
+      <form
+        onSubmit={selectedTodo ? handleEdit : handleAdd}
+      >
         <input
           placeholder="할일을 써주세요 :)"
           value={inputValue}
           onChange={handleChange}
         />
         {selectedTodo ? (
-          <div className="todoActions">
+          <div className="todo-actions">
             <TiPencil onClick={handleEdit} />
-            <TiTrash onClick={() => onRemoveTodo(selectedTodo.id)} />
+            <TiTrash
+              onClick={() => onRemoveTodo(selectedTodo.id)}
+            />
           </div>
         ) : (
           <button type="submit">
