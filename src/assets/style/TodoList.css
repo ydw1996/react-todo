@@ -1,5 +1,6 @@
 .todo-list {
   margin-left: 20px;
+  min-width: 382px;
   height: 50vh;
   color: rgb(76, 76, 76);
   overflow-y: scroll;

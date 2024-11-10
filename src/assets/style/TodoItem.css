@@ -6,6 +6,7 @@
   padding: 1rem 1rem 5rem 1rem;
   display: flex;
   align-items: center;
+  width: 320px;
 }
 
 .todo-item:first-child {

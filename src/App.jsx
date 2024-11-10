@@ -11,8 +11,8 @@ const App = () => {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      text: '자스몽 스터디 Todo리스트 생성 💪',
-      checked: true,
+      text: '달력 기능 추가 하기 🎨',
+      checked: false,
     },
     {
       id: 2,
@@ -21,13 +21,8 @@ const App = () => {
     },
     {
       id: 3,
-      text: '달력 기능 추가 하기 🎨',
-      checked: false,
-    },
-    {
-      id: 4,
-      text: 'React활용하여 새로운 기능 추가 🎉',
-      checked: false,
+      text: '자스몽 스터디 Todo리스트 생성 💪',
+      checked: true,
     },
   ]);
 
@@ -52,19 +47,33 @@ const App = () => {
       text,
       checked: false,
     };
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
+    setTodos((prevTodos) => [newTodo, ...prevTodos]);
     nextId.current++;
   }, []);
 
   // Todo 체크 상태 토글 함수
   const toggleTodoCheck = (id) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id
-          ? { ...todo, checked: !todo.checked }
-          : todo
-      )
-    );
+    setTodos((prevTodos) => {
+      const targetTodo = prevTodos.find(
+        (todo) => todo.id === id
+      );
+      if (!targetTodo) return prevTodos;
+
+      const updatedTodo = {
+        ...targetTodo,
+        checked: !targetTodo.checked,
+      };
+
+      const remainingTodos = prevTodos.filter(
+        (todo) => todo.id !== id
+      );
+
+      const updateTodosList = updatedTodo.checked
+        ? [...remainingTodos, updatedTodo]
+        : [updatedTodo, ...remainingTodos];
+
+      return updateTodosList;
+    });
   };
 
   const selectTodo = (todo) => {
