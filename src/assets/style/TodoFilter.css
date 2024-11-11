@@ -1,0 +1,13 @@
+.todo-filter {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: end;
+}
+
+.todo-filter > select {
+  border: none;
+  width: 85px;
+  color: rgba(76, 160, 255, 0.773);
+  border-radius: 20px;
+  padding: 3px;
+}

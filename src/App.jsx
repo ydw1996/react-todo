@@ -1,13 +1,13 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 import './App.css';
 import TodoBoard from './components/TodoBoard';
 import TodoList from './components/TodoList';
 import TodoPopup from './components/TodoPopup';
+import TodoFilter from './components/TodoFilter';
+import TodoAlert from './components/TodoAlert';
 
 const App = () => {
-  const [selectedTodo, setSelectedTodo] = useState(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [todos, setTodos] = useState([
     {
       id: 1,
@@ -25,9 +25,26 @@ const App = () => {
       checked: true,
     },
   ]);
+  const [selectedTodo, setSelectedTodo] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isDeleteAll, setIsDeleteAll] = useState(false);
+  const [filter, setFilter] = useState('all');
+  const [filtersArray, setFiltersArray] = useState(todos);
 
   const nextId = useRef(7);
 
+  // Todo 필터
+  useEffect(() => {
+    if (filter === 'all') {
+      setFiltersArray(todos);
+    } else if (filter === 'done') {
+      setFiltersArray(todos.filter((todo) => todo.checked));
+    } else if (filter === 'undone') {
+      setFiltersArray(todos.filter((todo) => !todo.checked));
+    }
+  }, [filter, todos]);
+
+  // Popup 함수
   const togglePopup = () => {
     if (selectedTodo) {
       setSelectedTodo(null);
@@ -35,7 +52,11 @@ const App = () => {
     setIsPopupOpen((prev) => !prev);
   };
 
-  // Todo 추가 함수
+  const toggleDeletePopup = () => {
+    setIsDeleteAll((prev) => !prev);
+  };
+
+  // Todo CRUD 함수
   const addTodo = useCallback((text) => {
     if (text.trim() === '') {
       alert('할 일을 입력해주세요');
@@ -51,12 +72,19 @@ const App = () => {
     nextId.current++;
   }, []);
 
+  const editTodo = (id, text) => {
+    setTodos((prevTodos) => prevTodos.map((todo) => (todo.id === id ? { ...todo, text } : todo)));
+  };
+
+  const removeTodo = (id) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+    togglePopup();
+  };
+
   // Todo 체크 상태 토글 함수
   const toggleTodoCheck = (id) => {
     setTodos((prevTodos) => {
-      const targetTodo = prevTodos.find(
-        (todo) => todo.id === id
-      );
+      const targetTodo = prevTodos.find((todo) => todo.id === id);
       if (!targetTodo) return prevTodos;
 
       const updatedTodo = {
@@ -64,9 +92,7 @@ const App = () => {
         checked: !targetTodo.checked,
       };
 
-      const remainingTodos = prevTodos.filter(
-        (todo) => todo.id !== id
-      );
+      const remainingTodos = prevTodos.filter((todo) => todo.id !== id);
 
       const updateTodosList = updatedTodo.checked
         ? [...remainingTodos, updatedTodo]
@@ -76,36 +102,23 @@ const App = () => {
     });
   };
 
-  const selectTodo = (todo) => {
-    setSelectedTodo(todo);
-  };
-
-  const removeTodo = (id) => {
-    setTodos((prevTodos) =>
-      prevTodos.filter((todo) => todo.id !== id)
-    );
-    togglePopup();
-  };
-
-  const editTodo = (id, text) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, text } : todo
-      )
-    );
+  const deleteAllTodos = () => {
+    setTodos([]);
   };
 
   return (
     <div className="todo-app">
       <TodoBoard>
+        <TodoFilter filter={filter} setFilter={setFilter} />
         <TodoList
-          todos={todos}
+          todos={filter === 'all' ? todos : filtersArray}
           onToggleCheck={toggleTodoCheck}
           onTogglePopup={togglePopup}
-          onSelectTodo={selectTodo}
+          onSelectTodo={setSelectedTodo}
         />
-        <div className="todo-add-btn" onClick={togglePopup}>
-          <BsFillPlusCircleFill />
+        <BsFillPlusCircleFill className="todo-add-btn" onClick={togglePopup} />
+        <div className="all-delete-btn" onClick={toggleDeletePopup}>
+          모두 삭제
         </div>
         {isPopupOpen && (
           <TodoPopup
@@ -114,6 +127,16 @@ const App = () => {
             onAddTodo={addTodo}
             onRemoveTodo={removeTodo}
             onEditTodo={editTodo}
+            isDeletePopup={false}
+          />
+        )}
+        {isDeleteAll && (
+          <TodoAlert
+            onConfirm={() => {
+              deleteAllTodos();
+              toggleDeletePopup();
+            }}
+            onCancel={toggleDeletePopup}
           />
         )}
       </TodoBoard>

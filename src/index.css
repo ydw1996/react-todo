@@ -3,24 +3,63 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas,
+    'Courier New', monospace;
 }
 
 @font-face {
-  font-family: "googleNanumGothic-R";
+  font-family: 'googleNanumGothic-R';
   src: url(./assets/fonts/NanumGothic-Regular.ttf);
 }
 @font-face {
-  font-family: "googleNanumGothic-B";
+  font-family: 'googleNanumGothic-B';
   src: url(./assets/fonts/NanumGothic-Bold.ttf);
 }
 @font-face {
-  font-family: "googleNanumGothic-EB";
+  font-family: 'googleNanumGothic-EB';
   src: url(./assets/fonts/NanumGothic-ExtraBold.ttf);
 }
 :root {
-  --font-googleNanum-R: "googleNanumGothic-R";
-  --font-googleNanum-B: "googleNanumGothic-B";
-  --font-googleNanum-EB: "googleNanumGothic-EB";
+  --font-googleNanum-R: 'googleNanumGothic-R';
+  --font-googleNanum-B: 'googleNanumGothic-B';
+  --font-googleNanum-EB: 'googleNanumGothic-EB';
+}
+
+.todo-popup-bg {
+  position: fixed;
+  z-index: 980;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: -webkit-linear-gradient(
+    90deg,
+    rgb(211, 234, 255),
+    rgb(144, 199, 255)
+  );
+  background: linear-gradient(
+    90deg,
+    rgb(211, 234, 255),
+    rgb(144, 199, 255)
+  );
+  opacity: 0.7;
+}
+
+.todo-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 990;
+  width: 400px;
+  height: 200px;
+  border-radius: 10px;
+  background: #fff;
 }

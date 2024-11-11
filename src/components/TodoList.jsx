@@ -1,12 +1,7 @@
 import TodoItem from './TodoItem';
 import '../assets/style/TodoList.css';
 
-const TodoList = ({
-  todos,
-  onToggleCheck,
-  onTogglePopup,
-  onSelectTodo,
-}) => {
+const TodoList = ({ todos, onToggleCheck, onTogglePopup, onSelectTodo }) => {
   return (
     <div className="todo-list">
       {todos.map((todo) => (

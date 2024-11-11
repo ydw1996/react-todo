@@ -1,0 +1,25 @@
+.title {
+  margin: 0;
+}
+.alert-actions {
+  display: flex;
+  gap: 20px;
+}
+.alert-actions > button {
+  border: none;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 8px 36px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.alert-actions .confirm {
+  background: rgba(76, 160, 255, 0.773);
+  color: #fff;
+}
+
+.alert-actions .cancle {
+  border: 1px solid rgba(76, 160, 255, 0.773);
+  color: rgba(76, 160, 255, 0.773);
+}

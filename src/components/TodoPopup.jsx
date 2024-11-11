@@ -3,13 +3,7 @@ import { MdAddCircle } from 'react-icons/md';
 import { TiPencil, TiTrash } from 'react-icons/ti';
 import '../assets/style/TodoPopup.css';
 
-const TodoPopup = ({
-  onClosePopup,
-  onAddTodo,
-  selectedTodo,
-  onRemoveTodo,
-  onEditTodo,
-}) => {
+const TodoPopup = ({ onClosePopup, onAddTodo, selectedTodo, onRemoveTodo, onEditTodo }) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = (e) => {
@@ -30,6 +24,13 @@ const TodoPopup = ({
     onClosePopup();
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      selectedTodo ? handleEdit(e) : handleAdd(e);
+    }
+  };
+
   useEffect(() => {
     if (selectedTodo) {
       setInputValue(selectedTodo.text);
@@ -40,31 +41,25 @@ const TodoPopup = ({
 
   return (
     <div>
-      <div
-        className="todo-popup-bg"
-        onClick={onClosePopup}
-      ></div>
-      <form
-        onSubmit={selectedTodo ? handleEdit : handleAdd}
-      >
+      <div className="todo-popup-bg" onClick={onClosePopup}></div>
+      <div className="todo-popup">
         <input
           placeholder="할일을 써주세요 :)"
           value={inputValue}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
         {selectedTodo ? (
           <div className="todo-actions">
             <TiPencil onClick={handleEdit} />
-            <TiTrash
-              onClick={() => onRemoveTodo(selectedTodo.id)}
-            />
+            <TiTrash onClick={() => onRemoveTodo(selectedTodo.id)} />
           </div>
         ) : (
-          <button type="submit">
+          <button onClick={handleAdd}>
             <MdAddCircle />
           </button>
         )}
-      </form>
+      </div>
     </div>
   );
 };
