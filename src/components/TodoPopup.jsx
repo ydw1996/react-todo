@@ -12,6 +12,10 @@ const TodoPopup = ({ onClosePopup, onAddTodo, selectedTodo, onRemoveTodo, onEdit
 
   const handleAdd = (e) => {
     e.preventDefault();
+    if (!inputValue.trim()) {
+      alert('할 일을 입력해 주세요.');
+      return;
+    }
     onAddTodo(inputValue);
     setInputValue('');
     onClosePopup();
@@ -19,6 +23,10 @@ const TodoPopup = ({ onClosePopup, onAddTodo, selectedTodo, onRemoveTodo, onEdit
 
   const handleEdit = (e) => {
     e.preventDefault();
+    if (!inputValue.trim()) {
+      alert('할 일을 입력해 주세요.');
+      return;
+    }
     onEditTodo(selectedTodo.id, inputValue);
     setInputValue('');
     onClosePopup();

@@ -58,11 +58,6 @@ const App = () => {
 
   // Todo CRUD 함수
   const addTodo = useCallback((text) => {
-    if (text.trim() === '') {
-      alert('할 일을 입력해주세요');
-      togglePopup();
-      return;
-    }
     const newTodo = {
       id: nextId.current,
       text,
