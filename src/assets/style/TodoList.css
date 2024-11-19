@@ -1,16 +1,22 @@
 .todo-list {
-  min-width: 400px;
-  height: 50vh;
-  color: rgb(76, 76, 76);
-  overflow-y: scroll;
+    height: 50vh;
+    color: rgb(76, 76, 76);
+    overflow-y: scroll;
 }
 
 .todo-list::-webkit-scrollbar {
-  background-color: rgba(240, 248, 255, 0.719);
-  width: 10px;
-  border-radius: 10px;
+    background-color: rgba(240, 248, 255, 0.719);
+    width: 10px;
+    border-radius: 10px;
 }
 .todo-list::-webkit-scrollbar-thumb {
-  background-color: rgba(76, 160, 255, 0.54);
-  border-radius: 10px;
+    background-color: rgba(76, 160, 255, 0.54);
+    border-radius: 10px;
+}
+
+/* PC */
+@media (min-width: 725px) {
+    .todo-list {
+        min-width: 400px;
+    }
 }

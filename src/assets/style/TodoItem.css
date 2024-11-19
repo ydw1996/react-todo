@@ -1,56 +1,55 @@
 .todo-item {
-  background: #fff;
-  margin-top: 10px;
-  margin-right: 20px;
-  border-radius: 10px;
-  padding: 1rem 1rem 3rem 1rem;
-  display: flex;
-  align-items: center;
-  width: 340px;
+    background: #fff;
+    margin-top: 10px;
+    margin-right: 20px;
+    border-radius: 10px;
+    padding: 1rem 1rem 3rem 1rem;
+    display: flex;
+    align-items: center;
 }
 
 .todo-item.checked {
-  background: aliceblue;
+    background: aliceblue;
 }
 .todo-item:first-child {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .todo-item + .todo-item {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .todo-item:hover {
-  background: aliceblue;
-  transition: 0.3s all;
+    background: aliceblue;
+    transition: 0.3s all;
 }
 
 .content {
-  cursor: pointer;
-  flex: 1;
-  display: flex;
-  align-items: center;
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 .content svg {
-  font-size: 1.8rem;
-  color: #a1a1a16a;
+    font-size: 1.8rem;
+    color: #a1a1a16a;
 }
 
 .content.checked svg {
-  font-size: 1.8rem;
-  color: rgb(76, 160, 255);
+    font-size: 1.8rem;
+    color: rgb(76, 160, 255);
 }
 
 .content .text {
-  margin-left: 1rem;
-  flex: 1;
-  font-size: 1rem;
+    margin-left: 1rem;
+    flex: 1;
+    font-size: 1rem;
 }
 
 .content.checked .text {
-  color: rgb(126, 126, 126);
-  text-decoration: line-through;
-  cursor: pointer;
-  opacity: 0.6;
+    color: rgb(126, 126, 126);
+    text-decoration: line-through;
+    cursor: pointer;
+    opacity: 0.6;
 }
