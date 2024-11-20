@@ -1,26 +1,23 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 import './App.css';
-import TodoBoard from './components/TodoBoard';
-import TodoList from './components/TodoList';
-import TodoPopup from './components/TodoPopup';
-import TodoFilter from './components/TodoFilter';
-import TodoAlert from './components/TodoAlert';
+import { TodoAlert, TodoBoard, TodoFilter, TodoList, TodoPopup } from './components';
 
 const App = () => {
   const [todos, setTodos] = useState([
     {
-      id: 1,
+      id: uuidv4(),
       text: '달력 기능 추가 하기 🎨',
       checked: false,
     },
     {
-      id: 2,
+      id: uuidv4(),
       text: '컴포넌트, 코드 정리 📓',
       checked: true,
     },
     {
-      id: 3,
+      id: uuidv4(),
       text: '자스몽 스터디 Todo리스트 생성 💪',
       checked: true,
     },
@@ -31,8 +28,7 @@ const App = () => {
   const [filter, setFilter] = useState('all');
   const [filtersArray, setFiltersArray] = useState(todos);
 
-  const nextId = useRef(7);
-
+  const remainingTodos = todos.filter((todo) => !todo.checked).length;
   // Todo 필터
   useEffect(() => {
     if (filter === 'all') {
@@ -59,12 +55,11 @@ const App = () => {
   // Todo CRUD 함수
   const addTodo = useCallback((text) => {
     const newTodo = {
-      id: nextId.current,
+      id: uuidv4(),
       text,
       checked: false,
     };
     setTodos((prevTodos) => [newTodo, ...prevTodos]);
-    nextId.current++;
   }, []);
 
   const editTodo = (id, text) => {
@@ -104,7 +99,7 @@ const App = () => {
   return (
     <div className="todo-app">
       <TodoBoard>
-        <TodoFilter filter={filter} setFilter={setFilter} />
+        <TodoFilter filter={filter} setFilter={setFilter} remainingTodos={remainingTodos} />
         <TodoList
           todos={filter === 'all' ? todos : filtersArray}
           onToggleCheck={toggleTodoCheck}

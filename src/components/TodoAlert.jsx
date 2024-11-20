@@ -5,7 +5,7 @@ const TodoAlert = ({ onConfirm, onCancel }) => {
     <div>
       <div className="todo-popup-bg" onClick={onCancel}></div>
       <div className="todo-popup">
-        <p className="tilte">정말 모두 삭제하시겠습니까?</p>
+        <p className="title">정말 모두 삭제하시겠습니까?</p>
         <div className="alert-actions">
           <button className="confirm" onClick={onConfirm}>
             확인

@@ -1,10 +1,14 @@
 .todo-filter {
   padding-bottom: 20px;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
+}
+.remaining-todos {
+  font-size: 16px;
 }
 
-.todo-filter > select {
+.filter > select {
   border: none;
   width: 85px;
   color: rgba(76, 160, 255, 0.773);

@@ -10,7 +10,6 @@
 }
 
 .todo-popup > button {
-  padding-top: 20px;
   background: none;
   outline: none;
   border: none;
@@ -29,7 +28,6 @@
 }
 
 .todo-actions > svg {
-  padding-top: 20px;
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 2rem;

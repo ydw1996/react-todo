@@ -3,8 +3,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas,
-    'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 @font-face {
@@ -35,16 +34,8 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: -webkit-linear-gradient(
-    90deg,
-    rgb(211, 234, 255),
-    rgb(144, 199, 255)
-  );
-  background: linear-gradient(
-    90deg,
-    rgb(211, 234, 255),
-    rgb(144, 199, 255)
-  );
+  background: -webkit-linear-gradient(90deg, rgb(211, 234, 255), rgb(144, 199, 255));
+  background: linear-gradient(90deg, rgb(211, 234, 255), rgb(144, 199, 255));
   opacity: 0.7;
 }
 
@@ -57,6 +48,7 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
   z-index: 990;
   width: 400px;
   height: 200px;
