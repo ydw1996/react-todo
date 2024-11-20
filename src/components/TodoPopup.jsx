@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MdAddCircle } from 'react-icons/md';
 import { TiPencil, TiTrash } from 'react-icons/ti';
 import '../assets/style/TodoPopup.css';
 
 const TodoPopup = ({ onClosePopup, onAddTodo, selectedTodo, onRemoveTodo, onEditTodo }) => {
   const [inputValue, setInputValue] = useState('');
+  const inputRef = useRef(null);
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
@@ -45,6 +46,9 @@ const TodoPopup = ({ onClosePopup, onAddTodo, selectedTodo, onRemoveTodo, onEdit
     } else {
       setInputValue('');
     }
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, [selectedTodo]);
 
   return (
@@ -52,6 +56,7 @@ const TodoPopup = ({ onClosePopup, onAddTodo, selectedTodo, onRemoveTodo, onEdit
       <div className="todo-popup-bg" onClick={onClosePopup}></div>
       <div className="todo-popup">
         <input
+          ref={inputRef}
           placeholder="할일을 써주세요 :)"
           value={inputValue}
           onChange={handleChange}
