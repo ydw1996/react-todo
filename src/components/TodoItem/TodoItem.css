@@ -19,11 +19,6 @@
     margin-top: 15px;
 }
 
-.todo-item:hover {
-    background: aliceblue;
-    transition: 0.3s all;
-}
-
 .content {
     cursor: pointer;
     flex: 1;
