@@ -1,0 +1,8 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
+    },
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+    // Prettier와 충돌 방지 (ESLint가 우선 적용)
+    "editor.formatOnSave": false
+}

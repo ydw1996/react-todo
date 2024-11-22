@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
-import './App.css';
-// import { TodoAlert, TodoBoard, TodoFilter, TodoList, TodoPopup } from '@components';
+import { v4 as uuidv4 } from 'uuid';
+
+import styles from './App.module.css';
 import { TodoAlert, TodoBoard, TodoFilter, TodoList, TodoPopup } from './components';
 
 const App = () => {
@@ -101,7 +101,7 @@ const App = () => {
     };
 
     return (
-        <div className="todo-app">
+        <div className={styles.todoApp}>
             <TodoBoard>
                 <TodoFilter filter={filter} setFilter={setFilter} remainingTodos={remainingTodos} />
                 <TodoList
@@ -110,10 +110,10 @@ const App = () => {
                     onTogglePopup={togglePopup}
                     onSelectTodo={setSelectedTodo}
                 />
-                <BsFillPlusCircleFill className="todo-add-btn" onClick={togglePopup} />
-                <div className="all-delete-btn" onClick={toggleDeletePopup}>
+                <BsFillPlusCircleFill className={styles.todoAddBtn} onClick={togglePopup} />
+                <button className={styles.allDeleteBtn} onClick={toggleDeletePopup}>
                     모두 삭제
-                </div>
+                </button>
                 {isPopupOpen && (
                     <TodoPopup
                         selectedTodo={selectedTodo}
