@@ -19,7 +19,7 @@ const TodoItem = ({ todo }) => {
           className="text"
           onClick={() => {
             setSelectedTodo(todo); 
-            togglePopup();
+            togglePopup(); 
           }}
         >
           {text}

@@ -9,7 +9,8 @@ const useTodoStore = create((set, get) => ({
   ],
   selectedTodo: null,
   isPopupOpen: false,
-  isDeleteAll: false,
+  isAlertOpen: false,
+  alertType: null,
   filter: 'all',
   filteredTodos: () => {
     const { todos, filter } = get();
@@ -23,7 +24,8 @@ const useTodoStore = create((set, get) => ({
   setFilter: (filter) => set({ filter }),
   setSelectedTodo: (todo) => set({ selectedTodo: todo }),
   togglePopup: () => set((state) => ({ isPopupOpen: !state.isPopupOpen })),
-  toggleDeletePopup: () => set((state) => ({ isDeleteAll: !state.isDeleteAll })),
+  toggleAlert: () => set((state) => ({ isAlertOpen: !state.isAlertOpen, alertType: null })), 
+  openDeleteAlert: () => set({ isAlertOpen: true, alertType: 'deleteAll' }),
 
   // CRUD 메서드
   addTodo: (text) =>
@@ -39,11 +41,23 @@ const useTodoStore = create((set, get) => ({
       todos: state.todos.filter((todo) => todo.id !== id),
     })),
   toggleTodoCheck: (id) =>
-    set((state) => ({
-      todos: state.todos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo
-      ),
-    })),
+    set((state) => {
+      const targetTodo = state.todos.find((todo) => todo.id === id);
+      if (!targetTodo) return { todos: state.todos };
+
+      const updatedTodo = {
+        ...targetTodo,
+        checked: !targetTodo.checked,
+      };
+
+      const remainingTodos = state.todos.filter((todo) => todo.id !== id);
+
+      const updatedTodos = updatedTodo.checked
+        ? [...remainingTodos, updatedTodo]
+        : [updatedTodo, ...remainingTodos];
+
+      return { todos: updatedTodos };
+    }),
   deleteAllTodos: () => set({ todos: [] }),
 }));
 

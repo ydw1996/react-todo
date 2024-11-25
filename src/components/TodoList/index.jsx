@@ -3,13 +3,15 @@ import './TodoList.css';
 import useTodoStore from '../../store/todoStore';
 
 const TodoList = () => {
-  const { todos } = useTodoStore(); 
+  const { filteredTodos } = useTodoStore(); 
 
   return (
     <div className="todo-list">
-      {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} />
-      ))}
+      {filteredTodos().map(
+        (todo ) => (
+          <TodoItem key={todo.id} todo={todo} />
+        )
+      )}
     </div>
   );
 };
