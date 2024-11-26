@@ -20,3 +20,10 @@
         min-width: 400px;
     }
 }
+
+/* 모바일 (폰) */
+@media (min-width: 480px) {
+    .todo-list {
+        max-height: 30vh;
+    }
+}
