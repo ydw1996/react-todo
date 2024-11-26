@@ -9,8 +9,6 @@ const useTodoStore = create((set, get) => ({
   ],
   selectedTodo: null,
   isPopupOpen: false,
-  isAlertOpen: false,
-  alertType: null,
   filter: 'all',
   filteredTodos: () => {
     const { todos, filter } = get();
@@ -24,8 +22,6 @@ const useTodoStore = create((set, get) => ({
   setFilter: (filter) => set({ filter }),
   setSelectedTodo: (todo) => set({ selectedTodo: todo }),
   togglePopup: () => set((state) => ({ isPopupOpen: !state.isPopupOpen })),
-  toggleAlert: () => set((state) => ({ isAlertOpen: !state.isAlertOpen, alertType: null })), 
-  openDeleteAlert: () => set({ isAlertOpen: true, alertType: 'deleteAll' }),
 
   // CRUD 메서드
   addTodo: (text) =>

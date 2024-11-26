@@ -1,6 +1,6 @@
 import { TodoItem } from '../';
 import './TodoList.css';
-import useTodoStore from '../../store/todoStore';
+import useTodoStore from '../../store/useTodoStore';
 
 const TodoList = () => {
   const { filteredTodos } = useTodoStore(); 

@@ -1,5 +1,5 @@
 import './TodoFilter.css';
-import useTodoStore from '../../store/todoStore';
+import useTodoStore from '../../store/useTodoStore';
 
 const TodoFilter = () => {
   const { filter, setFilter, remainingTodos } = useTodoStore();

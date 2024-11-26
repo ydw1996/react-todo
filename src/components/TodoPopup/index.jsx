@@ -3,7 +3,7 @@ import { MdAddCircle } from 'react-icons/md';
 import { TiPencil, TiTrash } from 'react-icons/ti';
 
 import './TodoPopup.css';
-import useTodoStore from '../../store/todoStore';
+import useTodoStore from '../../store/useTodoStore';
 
 const TodoPopup = () => {
   const { selectedTodo, togglePopup, addTodo, editTodo, removeTodo } = useTodoStore();

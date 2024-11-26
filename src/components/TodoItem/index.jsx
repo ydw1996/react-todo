@@ -1,7 +1,7 @@
 import { BsCheckCircle, BsCircle } from 'react-icons/bs';
 
 import './TodoItem.css';
-import useTodoStore from '../../store/todoStore';
+import useTodoStore from '../../store/useTodoStore';
 
 const TodoItem = ({ todo }) => {
   const { toggleTodoCheck, setSelectedTodo, togglePopup } = useTodoStore(); 

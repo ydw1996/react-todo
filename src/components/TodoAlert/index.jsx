@@ -1,10 +1,11 @@
 import './TodoAlert.css';
 
-const TodoAlert = ({ alertMessage = "", onConfirm, onCancel }) => {
+const TodoAlert = ({ isVisible, type, alertMessage = "", onConfirm, onCancel }) => {
+  if (!isVisible) return null; 
   return (
     <div>
       <div className="todo-popup-bg" onClick={onCancel}></div>
-      <div className="todo-popup">
+      <div className={`todo-popup ${type}`}>
         <p className="title">{alertMessage}</p>
         <div className="alert-actions">
           <button className="confirm" onClick={onConfirm}>

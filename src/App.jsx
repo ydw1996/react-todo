@@ -2,28 +2,21 @@ import { BsFillPlusCircleFill } from 'react-icons/bs';
 
 import styles from './App.module.css';
 import { TodoAlert, TodoBoard, TodoFilter, TodoList, TodoPopup } from './components';
-import useTodoStore from './store/todoStore';
+import { useAlertStore, useTodoStore } from './store';
 
 const App = () => {
   const {
-    isAlertOpen,
-    alertType,
     isPopupOpen,
     setSelectedTodo,
     togglePopup,
-    toggleAlert,
-    openDeleteAlert,
-    deleteAllTodos,
+    deleteAllTodos
   } = useTodoStore();
+
+  const { isAlertOpen, type, message, onConfirm, onCancel, deleteAllAlert } = useAlertStore();
 
     const openAddTodoPopup = () => {
       setSelectedTodo(null);
       togglePopup();
-    };
-
-    const deleteAllConfirm = () => {
-      deleteAllTodos(); 
-      toggleAlert(); 
     };
     
   return (
@@ -32,17 +25,17 @@ const App = () => {
         <TodoFilter />
         <TodoList />
         <BsFillPlusCircleFill className={styles.todoAddBtn} onClick={openAddTodoPopup} />
-        <button className={styles.allDeleteBtn} onClick={openDeleteAlert}>
+        <button className={styles.allDeleteBtn} onClick={() => deleteAllAlert(deleteAllTodos)}>
           모두 삭제
         </button>
         {isPopupOpen && <TodoPopup />}
-        {isAlertOpen && alertType === 'deleteAll' && (
-          <TodoAlert
-            alertMessage="정말 모두 삭제하시겠습니까?"
-            onConfirm={deleteAllConfirm}
-            onCancel={toggleAlert}
-          />
-        )}
+        <TodoAlert
+         isVisible={isAlertOpen}
+         type={type}
+         alertMessage={message}
+         onConfirm={onConfirm}
+         onCancel={onCancel}
+       />
       </TodoBoard>
     </div>
   );
