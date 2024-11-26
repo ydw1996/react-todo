@@ -1,4 +1,5 @@
 import Calendar from "react-calendar";
+
 import "react-calendar/dist/Calendar.css";
 import "./TodoCalender.css";
 import useTodoStore from "../../store/useTodoStore";
@@ -8,8 +9,10 @@ const TodoCalender = () => {
 
   return (
     <Calendar
-      onChange={setCurrentDate} 
+      onChange={setCurrentDate}
       value={currentDate}
+      prev2Label={null} 
+      next2Label={null} 
     />
   );
 };
