@@ -124,7 +124,7 @@ abbr[title] {
 /* 모바일 (폰) */
 @media screen and (max-width: 480px) {
   .react-calendar {
-    height: 32vh;
+    height: 35vh;
     font-size: 13px;
   }
 
