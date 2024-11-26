@@ -32,7 +32,8 @@ hr {
     padding-bottom: 80px;
 }
 
-@media (max-width: 725px) {
+/* 반응형 */
+@media (max-width: 900px) {
     .todo-container {
         width: 100vh;
     }

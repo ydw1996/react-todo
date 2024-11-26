@@ -92,14 +92,38 @@ abbr[title] {
   color: white;
 }
 
-/* MO */
-@media screen and (max-width: 725px) {
+/* 반응형 */
+@media screen and (max-width: 900px) {
   .react-calendar {
     width: 100%;
     height: 40vh;
     padding: 6px;
     border-radius: 6px;
     font-size: 1rem;
+  }
+
+  .react-calendar__navigation button {
+    font-size: 12px; 
+    margin-top: 4px;
+  }
+
+  .react-calendar__tile {
+    padding: 4px; 
+  }
+
+  .react-calendar__tile--now {
+    font-size: 11px;
+  }
+
+  .react-calendar__tile--active {
+    font-size: 11px;
+  }
+}
+
+/* 반응형 */
+@media screen and (max-width: 400px) {
+  .react-calendar {
+    font-size: 11px;
   }
 
   .react-calendar__navigation button {
