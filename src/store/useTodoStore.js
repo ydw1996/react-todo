@@ -3,18 +3,21 @@ import { create } from 'zustand';
 
 const useTodoStore = create((set, get) => ({
   todos: [
-    { id: uuidv4(), text: '달력 기능 추가 하기 🎨', checked: false },
-    { id: uuidv4(), text: '컴포넌트, 코드 정리 📓', checked: true },
-    { id: uuidv4(), text: '자스몽 스터디 Todo리스트 생성 💪', checked: true },
+    { id: uuidv4(), text: "달력 기능 추가 하기 🎨", checked: false },
+    { id: uuidv4(), text: "컴포넌트, 코드 정리 📓", checked: true },
+    { id: uuidv4(), text: "자스몽 스터디 Todo리스트 생성 💪", checked: true },
   ],
   selectedTodo: null,
   isPopupOpen: false,
-  filter: 'all',
+  filter: "all",
+  currentDate: new Date(), 
+  setCurrentDate: (date) => set({ currentDate: date }), 
+  
   filteredTodos: () => {
     const { todos, filter } = get();
-    if (filter === 'all') return todos;
-    if (filter === 'done') return todos.filter((todo) => todo.checked);
-    if (filter === 'undone') return todos.filter((todo) => !todo.checked);
+    if (filter === "all") return todos;
+    if (filter === "done") return todos.filter((todo) => todo.checked);
+    if (filter === "undone") return todos.filter((todo) => !todo.checked);
   },
   remainingTodos: () => get().todos.filter((todo) => !todo.checked).length,
 
@@ -30,7 +33,9 @@ const useTodoStore = create((set, get) => ({
     })),
   editTodo: (id, text) =>
     set((state) => ({
-      todos: state.todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)),
+      todos: state.todos.map((todo) =>
+        todo.id === id ? { ...todo, text } : todo
+      ),
     })),
   removeTodo: (id) =>
     set((state) => ({

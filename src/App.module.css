@@ -5,15 +5,6 @@ body {
     height: 100%;
     margin: 0;
 }
-button {
-    padding: 8px 20px;
-    font-size: 14px;
-    border: 1px solid;
-    border-radius: 20px;
-    cursor: pointer;
-    color: rgb(76, 160, 255);
-    background-color: transparent;
-}
 .todoApp {
     min-height: 100vh;
     display: flex;
@@ -24,6 +15,17 @@ button {
     background: linear-gradient(90deg, rgb(211, 234, 255), rgb(144, 199, 255));
 }
 
+.todoBox {
+  display: flex;
+  gap: 20px;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+    .todoBox {
+        flex-direction: column;
+    }
+}
 .todoAddBtn {
     position: absolute;
     right: 30px;
@@ -47,9 +49,19 @@ button {
     transition: 0.5s ease-in-out;
 }
 
+.outlineBtn {
+    padding: 8px 20px;
+    font-size: 14px;
+    border: 1px solid;
+    border-radius: 20px;
+    cursor: pointer;
+    color: rgb(76, 160, 255);
+    background-color: transparent;
+}
+
 .allDeleteBtn {
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
     left: 50%;
     transform: translate(-50%, -50%);
 }
