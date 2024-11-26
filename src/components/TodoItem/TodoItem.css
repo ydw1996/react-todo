@@ -75,10 +75,10 @@
 /* 모바일 (폰) */
 @media (max-width: 480px) {
     .todo-item {
-        padding: 0.6rem;
+        padding: 0.8rem;
     }
 
     .content .text {
-        font-size: 0.8rem; 
+        font-size: 1rem; 
     }
 }
