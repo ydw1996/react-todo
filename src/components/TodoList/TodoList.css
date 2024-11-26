@@ -1,5 +1,5 @@
 .todo-list {
-    height: 50vh;
+    max-height: 50vh;
     color: rgb(76, 76, 76);
     overflow-y: scroll;
 }
@@ -14,7 +14,7 @@
     border-radius: 10px;
 }
 
-/* PC */
+/* 반응형 */
 @media (min-width: 725px) {
     .todo-list {
         min-width: 400px;

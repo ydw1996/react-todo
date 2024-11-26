@@ -2,11 +2,13 @@ import './TodoFilter.css';
 import useTodoStore from '../../store/useTodoStore';
 
 const TodoFilter = () => {
-  const { filter, setFilter, remainingTodos } = useTodoStore();
+  const { filter, setFilter, getTodosForCurrentDate } = useTodoStore();
 
   return (
     <div className="todo-filter">
-      <div className="remaining-todos">Todo: {remainingTodos()}</div>
+      <div className="remaining-todos">
+        Todo: {getTodosForCurrentDate().length}
+      </div>
       <div className="filter">
         <select value={filter} onChange={(e) => setFilter(e.target.value)}>
           <option value="all">All</option>

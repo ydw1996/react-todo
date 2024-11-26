@@ -3,17 +3,17 @@ import './TodoList.css';
 import useTodoStore from '../../store/useTodoStore';
 
 const TodoList = () => {
-  const { filteredTodos } = useTodoStore(); 
+    const getTodosForCurrentDate = useTodoStore(
+      (state) => state.getTodosForCurrentDate
+    );
 
-  return (
-    <div className="todo-list">
-      {filteredTodos().map(
-        (todo ) => (
+    return (
+      <div className="todo-list">
+        {getTodosForCurrentDate().map((todo) => (
           <TodoItem key={todo.id} todo={todo} />
-        )
-      )}
-    </div>
-  );
+        ))}
+      </div>
+    );
 };
 
 export default TodoList;

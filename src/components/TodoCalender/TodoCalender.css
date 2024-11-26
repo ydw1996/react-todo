@@ -1,12 +1,13 @@
 .react-calendar {
   width: 400px;
-  height: 50vh;
+  max-height: 50vh;
   max-width: 100%;
   background-color: #fff;
   color: #222;
   padding: 10px;
   border-radius: 10px;
   line-height: 1.125em;
+  font-size: 14px;
   border: none;
   overflow: hidden;
   font-family: "googleNanumGothic-R";
@@ -120,10 +121,11 @@ abbr[title] {
   }
 }
 
-/* 반응형 */
-@media screen and (max-width: 400px) {
+/* 모바일 (폰) */
+@media screen and (max-width: 480px) {
   .react-calendar {
-    font-size: 11px;
+    height: 30vh;
+    font-size: 13px;
   }
 
   .react-calendar__navigation button {

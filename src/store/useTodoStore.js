@@ -2,24 +2,44 @@ import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 
 const useTodoStore = create((set, get) => ({
-  todos: [
-    { id: uuidv4(), text: "달력 기능 추가 하기 🎨", checked: false },
-    { id: uuidv4(), text: "컴포넌트, 코드 정리 📓", checked: true },
-    { id: uuidv4(), text: "자스몽 스터디 Todo리스트 생성 💪", checked: true },
-  ],
+  todos: {
+    [new Date().toISOString().split("T")[0]]: [
+      {
+        id: uuidv4(),
+        text: "🍀 오늘의 Todo로 하루를 채워봐요!",
+        checked: false,
+      },
+    ],
+  },
   selectedTodo: null,
   isPopupOpen: false,
   filter: "all",
-  currentDate: new Date(), 
-  setCurrentDate: (date) => set({ currentDate: date }), 
-  
-  filteredTodos: () => {
-    const { todos, filter } = get();
-    if (filter === "all") return todos;
-    if (filter === "done") return todos.filter((todo) => todo.checked);
-    if (filter === "undone") return todos.filter((todo) => !todo.checked);
+  currentDate: new Date(),
+  setCurrentDate: (date) => set({ currentDate: date }),
+
+  // 공통 헬퍼 함수
+  getDateSpecificData: () => {
+    const { todos, currentDate } = get();
+    const formattedDate = currentDate.toISOString().split("T")[0];
+    return { todos, formattedDate };
   },
-  remainingTodos: () => get().todos.filter((todo) => !todo.checked).length,
+
+  // 현재 선택된 날짜 투두
+  getTodosForCurrentDate: () => {
+    const { todos, formattedDate } = get().getDateSpecificData();
+    const filter = get().filter;
+    const todosForDate = todos[formattedDate] || [];
+
+    if (filter === "all") return todosForDate;
+    if (filter === "done") return todosForDate.filter((todo) => todo.checked);
+    if (filter === "undone")
+      return todosForDate.filter((todo) => !todo.checked);
+  },
+
+  remainingTodos: () => {
+    const todosForDate = get().getTodosForCurrentDate();
+    return todosForDate.filter((todo) => !todo.checked).length;
+  },
 
   // 상태 업데이트 메서드
   setFilter: (filter) => set({ filter }),
@@ -27,39 +47,63 @@ const useTodoStore = create((set, get) => ({
   togglePopup: () => set((state) => ({ isPopupOpen: !state.isPopupOpen })),
 
   // CRUD 메서드
-  addTodo: (text) =>
-    set((state) => ({
-      todos: [{ id: uuidv4(), text, checked: false }, ...state.todos],
-    })),
-  editTodo: (id, text) =>
-    set((state) => ({
-      todos: state.todos.map((todo) =>
-        todo.id === id ? { ...todo, text } : todo
-      ),
-    })),
-  removeTodo: (id) =>
-    set((state) => ({
-      todos: state.todos.filter((todo) => todo.id !== id),
-    })),
-  toggleTodoCheck: (id) =>
-    set((state) => {
-      const targetTodo = state.todos.find((todo) => todo.id === id);
-      if (!targetTodo) return { todos: state.todos };
+  addTodo: (text) => {
+    const { todos, formattedDate } = get().getDateSpecificData();
 
-      const updatedTodo = {
-        ...targetTodo,
-        checked: !targetTodo.checked,
-      };
+    set({
+      todos: {
+        ...todos,
+        [formattedDate]: [
+          ...(todos[formattedDate] || []),
+          { id: uuidv4(), text, checked: false },
+        ],
+      },
+    });
+  },
 
-      const remainingTodos = state.todos.filter((todo) => todo.id !== id);
+  editTodo: (id, text) => {
+    const { todos, formattedDate } = get().getDateSpecificData();
 
-      const updatedTodos = updatedTodo.checked
-        ? [...remainingTodos, updatedTodo]
-        : [updatedTodo, ...remainingTodos];
+    set({
+      todos: {
+        ...todos,
+        [formattedDate]: todos[formattedDate].map((todo) =>
+          todo.id === id ? { ...todo, text } : todo
+        ),
+      },
+    });
+  },
 
-      return { todos: updatedTodos };
-    }),
-  deleteAllTodos: () => set({ todos: [] }),
+  removeTodo: (id) => {
+    const { todos, formattedDate } = get().getDateSpecificData();
+
+    set({
+      todos: {
+        ...todos,
+        [formattedDate]: todos[formattedDate].filter((todo) => todo.id !== id),
+      },
+    });
+  },
+
+  toggleTodoCheck: (id) => {
+    const { todos, formattedDate } = get().getDateSpecificData();
+
+    set({
+      todos: {
+        ...todos,
+        [formattedDate]: todos[formattedDate].map((todo) =>
+          todo.id === id ? { ...todo, checked: !todo.checked } : todo
+        ),
+      },
+    });
+  },
+
+  deleteAllTodos: () => {
+    const { todos, formattedDate } = get().getDateSpecificData();
+
+    const { [formattedDate]: _, ...remainingTodos } = todos;
+    set({ todos: remainingTodos });
+  },
 }));
 
 export default useTodoStore;

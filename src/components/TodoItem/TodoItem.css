@@ -24,6 +24,7 @@
     flex: 1;
     display: flex;
     align-items: center;
+    word-wrap: break-word; 
 }
 
 .content svg {
@@ -47,4 +48,37 @@
     text-decoration: line-through;
     cursor: pointer;
     opacity: 0.6;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 900px) {
+    .todo-item {
+        margin-right: 0; 
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .content svg, .content.checked svg  {
+        font-size: 1.5rem; 
+    }
+
+    .content .text {
+        font-size: 0.9rem;
+        margin-left: 0.5rem;
+    }
+
+    .todo-item + .todo-item {
+        margin-top: 10px; 
+    }
+}
+
+/* 모바일 (폰) */
+@media (max-width: 480px) {
+    .todo-item {
+        padding: 0.6rem;
+    }
+
+    .content .text {
+        font-size: 0.8rem; 
+    }
 }

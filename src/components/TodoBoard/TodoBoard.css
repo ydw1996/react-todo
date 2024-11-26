@@ -35,6 +35,48 @@ hr {
 /* 반응형 */
 @media (max-width: 900px) {
     .todo-container {
-        width: 100vh;
+        padding: 20px 20px 100px 20px;
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem; 
+    }
+
+    .day {
+        font-size: 0.9rem; 
+    }
+
+    .todo-board {
+        gap: 10px;
+        padding-bottom: 60px;
+    }
+}
+
+/* 모바일 (폰) */
+@media (max-width: 480px) {
+    .todo-container {
+        padding: 15px;
+        padding-bottom: 50px;
+        border-radius: 15px;
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .day {
+        font-size: 0.8rem;
+    }
+
+    hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .todo-board {
+        flex-direction: column; 
+        padding-bottom: 50px;
     }
 }
