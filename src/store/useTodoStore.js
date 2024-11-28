@@ -2,7 +2,6 @@ import { v4 as uuidv4 } from "uuid";
 import { create } from "zustand";
 
 const useTodoStore = create((set, get) => {
-  // 오늘 날짜 기본 설정
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split("T")[0];
 
@@ -22,21 +21,27 @@ const useTodoStore = create((set, get) => {
     currentDate,
     setCurrentDate: (date) => {
       const { todos } = get();
-      const formattedDate = new Date(date).toISOString().split("T")[0];
+      const today = new Date();
+      const todayFormattedDate = today.toISOString().split("T")[0];
+      const selectedFormattedDate = new Date(date).toISOString().split("T")[0];
 
-      if (!todos[formattedDate]) {
-        set({
-          todos: {
-            ...todos,
-            [formattedDate]: [
-              {
-                id: uuidv4(),
-                text: "🍀 오늘의 Todo로 하루를 채워봐요!",
-                checked: false,
-              },
-            ],
-          },
-        });
+      // 선택한 날짜가 오늘인 경우 항상 기본 Todo 추가
+      if (!todos[selectedFormattedDate]) {
+        const newTodos = {
+          ...todos,
+          [selectedFormattedDate]:
+            selectedFormattedDate === todayFormattedDate
+              ? [
+                  {
+                    id: uuidv4(),
+                    text: "🍀 오늘의 Todo로 하루를 채워봐요!",
+                    checked: false,
+                  },
+                ]
+              : [],
+        };
+
+        set({ todos: newTodos });
       }
 
       set({ currentDate: new Date(date) });
