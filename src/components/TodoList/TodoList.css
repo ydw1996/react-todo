@@ -1,5 +1,6 @@
 .todo-list {
     max-height: 50vh;
+    min-width: 400px;
     color: rgb(76, 76, 76);
     overflow-y: scroll;
 }
@@ -15,16 +16,17 @@
 }
 
 /* 반응형 */
-@media (min-width: 725px) {
+@media (max-width: 725px) {
     .todo-list {
         min-width: 400px;
     }
 }
 
 /* 모바일 (폰) */
-@media (min-width: 480px) {
+@media (max-width: 480px) {
     .todo-list {
         max-height: 15vh;
+        min-width: 100%;
     }
     .todo-list {
         -ms-overflow-style: none; 
