@@ -12,10 +12,6 @@
   overflow: hidden;
   font-family: "googleNanumGothic-R";
 }
- .react-calendar__navigation__label {
-  pointer-events: none; 
-  cursor: none; 
-}
 .react-calendar__navigation button {
   color: rgb(76, 160, 255);
   min-width: 44px;
