@@ -57,9 +57,10 @@ hr {
 @media (max-width: 480px) {
     .todo-container {
         padding: 15px;
-        padding-bottom: 50px;
+        padding-bottom: 0px;
         border-radius: 15px;
         font-size: 0.9rem;
+        height: 90vh;
     }
 
     h1 {

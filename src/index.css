@@ -34,8 +34,8 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: -webkit-linear-gradient(90deg, rgb(211, 234, 255), rgb(144, 199, 255));
-  background: linear-gradient(90deg, rgb(211, 234, 255), rgb(144, 199, 255));
+  /* background: -webkit-linear-gradient(90deg, rgb(211, 234, 255), rgb(144, 199, 255)); */
+  background: -webkit-linear-gradient(360deg, rgb(241 211 255), rgb(144, 199, 255));
   opacity: 0.7;
 }
 

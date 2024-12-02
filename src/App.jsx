@@ -1,8 +1,16 @@
 import classNames from "classnames";
 import { BsFillPlusCircleFill } from 'react-icons/bs';
+import Snowfall from 'react-snowfall';
 
 import styles from './App.module.css';
-import { TodoAlert, TodoBoard, TodoCalender, TodoFilter, TodoList, TodoPopup } from './components';
+import {
+  TodoAlert,
+  TodoBoard,
+  TodoCalender,
+  TodoFilter,
+  TodoList,
+  TodoPopup,
+} from './components';
 import { useAlertStore, useTodoStore } from './store';
 
 const App = () => {
@@ -22,16 +30,14 @@ const App = () => {
     
   return (
     <div className={styles.todoApp}>
+      <Snowfall color="white" snowflakeCount={200} />
       <TodoBoard>
         <TodoFilter />
         <div className={styles.todoBox}>
           <TodoCalender />
           <TodoList />
         </div>
-        <BsFillPlusCircleFill
-          className={styles.todoAddBtn}
-          onClick={openAddTodoPopup}
-        />
+        <BsFillPlusCircleFill className={styles.todoAddBtn} onClick={openAddTodoPopup} />
         <button
           className={classNames(styles.allDeleteBtn, styles.outlineBtn)}
           onClick={() => deleteAllAlert(deleteAllTodos)}

@@ -11,8 +11,8 @@ body {
     justify-content: center;
     align-items: center;
     color: rgb(57, 57, 57);
-    background: -webkit-linear-gradient(90deg, rgb(211, 234, 255), rgb(144, 199, 255));
-    background: linear-gradient(90deg, rgb(211, 234, 255), rgb(144, 199, 255));
+    /* background: -webkit-linear-gradient(90deg, rgb(211, 234, 255), rgb(144, 199, 255)); */
+    background: -webkit-linear-gradient(90deg, rgb(225, 207, 248), rgb(144, 199, 255));
 }
 
 .todoBox {

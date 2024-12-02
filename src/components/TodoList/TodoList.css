@@ -25,7 +25,7 @@
 /* 모바일 (폰) */
 @media (max-width: 480px) {
     .todo-list {
-        max-height: 15vh;
+        max-height: 20vh;
         min-width: 100%;
     }
     .todo-list {
