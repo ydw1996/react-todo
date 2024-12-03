@@ -45,8 +45,8 @@ body {
 
 .outlineBtn {
     padding: 8px 20px;
-    font-size: 14px;
-    border: 1px solid;
+    font-size: 12px;
+    border: 1px solid rgb(76, 160, 255);
     border-radius: 20px;
     cursor: pointer;
     color: rgb(76, 160, 255);
@@ -54,6 +54,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: 1.2;
 }
 
 .allDeleteBtn {
@@ -95,7 +96,7 @@ body {
     }
 
     .outlineBtn {
-        padding: 6px 16px;
+        padding: 8px 16px;
         font-size: 12px;
     }
 }
@@ -108,19 +109,20 @@ body {
 
     .todoAddBtn {
         right: 15px;
-        bottom: 30px;
+        bottom: 20px;
         width: 40px;
         height: 40px;
         font-size: 3rem;
     }
 
     .allDeleteBtn {
-        bottom: 20px;
+        bottom: 10px;
         font-size: 10px;
         line-height: 10px;
     }
 
     .outlineBtn {
         font-size: 10px;
+        line-height: 1;
     }
 }
