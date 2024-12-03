@@ -19,6 +19,11 @@ const useTodoStore = create((set, get) => {
     isPopupOpen: false,
     filter: "all",
     currentDate,
+    isSnowing: true,
+
+    // Snowflake 상태 관리
+    toggleSnowing: () => set((state) => ({ isSnowing: !state.isSnowing })),
+
     setCurrentDate: (date) => {
       const { todos } = get();
       const today = new Date();
